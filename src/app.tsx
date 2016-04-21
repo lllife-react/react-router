@@ -1,94 +1,43 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom'
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { BioComponent } from "./bio.component";
+import { PhotoComponent } from "./photo.component";
+
 import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'react-router'
 
-const ACTIVE = { color: 'red' }
 
 class App extends Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h1>APP!</h1>
-        <ul>
-          <li><Link to="/" activeStyle={ACTIVE}>/</Link></li>
-          <li><IndexLink to="/" activeStyle={ACTIVE}>/ IndexLink</IndexLink></li>
+    active = "active";
 
-          <li><Link to="/users" activeStyle={ACTIVE}>/users</Link></li>
-          <li><IndexLink to="/users" activeStyle={ACTIVE}>/users IndexLink</IndexLink></li>
-
-          <li><Link to="/users/ryan" activeStyle={ACTIVE}>/users/ryan</Link></li>
-          <li><Link to={{ pathname: '/users/ryan', query: { foo: 'bar' } }}
-            activeStyle={ACTIVE}>/users/ryan?foo=bar</Link></li>
-
-          <li><Link to="/about" activeStyle={ACTIVE}>/about</Link></li>
-        </ul>
-
-        {this.props.children}
-      </div>
-    )
+      render() {
+        return (
+            <div>
+                <div className="ui poiting menu">
+                  <Link to="/" className="item" activeClassName={this.active}><i className="ui home icon"/> Home </Link>
+                  <Link to="/bio" className="item" activeClassName={this.active}> Bio </Link>
+                  <Link to="/photo" className="item" activeClassName={this.active}> Photos </Link>
+                  <div className="right menu">
+                    <div className="item">
+                      <div className="ui transparent icon input">
+                        <input type="text" placeholder="Search users..."/> <i className="search link icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="ui bottom attached segment">
+                    {this.props.children}
+                </div>
+            </div>
+        );
   }
 }
 
-class Index extends React.Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h2>Index!</h2>
-      </div>
-    )
-  }
-}
-
-class Users extends React.Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h2>Users</h2>
-        {this.props.children}
-      </div>
-    )
-  }
-}
-
-class UsersIndex extends React.Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h3>UsersIndex</h3>
-      </div>
-    )
-  }
-}
-
-class User extends React.Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h3>User {this.props.params.id}</h3>
-      </div>
-    )
-  }
-}
-
-class About extends React.Component<any,any> {
-  render() {
-    return (
-      <div>
-        <h2>About</h2>
-      </div>
-    )
-  }
-}
-
-render((
+ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <IndexRoute component={Index}/>
-      <Route path="/about" component={About}/>
-      <Route path="users" component={Users}>
-        <IndexRoute component={UsersIndex}/>
-        <Route path=":id" component={User}/>
-      </Route>
+      <IndexRoute component={BioComponent}/>
+      <Route path="/bio" component={BioComponent}/>
+      <Route path="/photo" component={PhotoComponent}/>
     </Route>
   </Router>
 ), document.getElementById('react'))

@@ -10,5 +10,8 @@
       "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^1.1.4"
     }
+  },
+  "dependencies": {
+    "semantic-ui-css": "^2.1.8"
   }
 }
