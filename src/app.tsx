@@ -19,7 +19,7 @@ class App extends Component<any,any> {
                   <div className="right menu">
                     <div className="item">
                       <div className="ui transparent icon input">
-                        <input type="text" placeholder="Search users..."/> <i className="search link icon"></i>
+                        <input type="text" placeholder="Search..."/> <i className="search link icon"></i>
                       </div>
                     </div>
                   </div>
